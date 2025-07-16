@@ -1,0 +1,21 @@
+{
+  "name": "yt-comment-analyser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SahanNimeshWeerakoon/yt-comment-analyzer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SahanNimeshWeerakoon/yt-comment-analyzer/issues"
+  },
+  "homepage": "https://github.com/SahanNimeshWeerakoon/yt-comment-analyzer#readme",
+  "description": ""
+}
