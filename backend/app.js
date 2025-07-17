@@ -1,11 +1,14 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 const YT_API_KEY = process.env.YOUTUBE_API_KEY;
+
+app.use(cors());
 
 app.get('/api/search', async (req, res) => {
     const { query } = req.query;
@@ -18,7 +21,7 @@ app.get('/api/search', async (req, res) => {
                 part: 'snippet',
                 q: query,
                 type: 'video',
-                maxResults: 1,
+                maxResults: 20,
                 key: YT_API_KEY
             }
         });
@@ -27,10 +30,11 @@ app.get('/api/search', async (req, res) => {
             videoId: item.id.videoId,
             title: item.snippet.title,
             description: item.snippet.description,
-            thumbnail: item.snippet.thumbnails.default.url
+            thumbnail: item.snippet.thumbnails.default.url,
+            publishedAt: item.snippet.publishedAt
         }));
 
-        res.status(200).json({ data: videos ?? [] });
+        res.status(200).json(videos);
     } catch(err) {
         return res.status(500).json({ err, message: 'Backend error' });
     }
