@@ -7,7 +7,7 @@ const Search = () => {
     const [results, setResults] = useState([]);
     
     return (
-        <div>
+        <div className='w-[40%] m-auto'>
             <SearchBar setResults={setResults} />
             <SearchResults results={results} />
         </div>

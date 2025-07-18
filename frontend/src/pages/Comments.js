@@ -6,6 +6,7 @@ import Comment from "../components/comments/comment";
 
 const Comments = () => {
     const [comments, setcomments] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const { id } = useParams();
 
@@ -13,13 +14,21 @@ const Comments = () => {
         axios
             .get(`http://localhost:5000/api/comments/${id}`)
             .then(res => {
+                setIsLoading(false);
                 setcomments(res.data)
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setIsLoading(false);
+                console.log(err)
+            });
     }, [id]);
 
     return (
-        <div className='text-left'>
+        <div className='text-left w-[40%] m-auto'>
+            
+            <div className='text-center'>
+                {isLoading && "Loading..."}
+            </div>
             {comments.map(({author, text, publishedAt}) => (
                 <div key={`${author}-${publishedAt}`}>
                     <Comment

@@ -2,7 +2,7 @@ import SearchResult from "./SearchResult";
 
 const SearchResults = ({ results }) => {
     return (
-        <div className="w-[60%] m-auto">
+        <div>
             {results.map(result => (
                 <div key={result.thumbnail}>
                     <SearchResult result={result} />

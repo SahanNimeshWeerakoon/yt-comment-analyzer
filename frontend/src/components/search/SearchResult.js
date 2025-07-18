@@ -1,5 +1,5 @@
 import ReactTimeAgo from 'react-time-ago'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SearchResult = ({
     result
@@ -12,8 +12,21 @@ const SearchResult = ({
         channelTitle
     } = result;
 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        localStorage.setItem("videoDetails", JSON.stringify({
+            title,
+            videoId,
+            thumbnail,
+            publishedAt,
+            channelTitle
+        }));
+        navigate(`/comments/${videoId}`);
+    }
+
     return (
-        <Link to={`/comments/${videoId}`} className="flex hover:cursor-pointer">
+        <button onClick={handleClick} className="flex hover:cursor-pointer">
             <div className='w-1/3 rounded'>
                 <img src={thumbnail} alt={title} />
             </div>
@@ -22,7 +35,7 @@ const SearchResult = ({
                 <p className='d-block'><ReactTimeAgo date={publishedAt} locale="en-US"/></p>
                 <p>{channelTitle}</p>
             </div>
-        </Link>
+        </button>
     );
 }
 

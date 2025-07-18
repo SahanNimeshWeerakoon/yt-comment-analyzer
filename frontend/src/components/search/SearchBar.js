@@ -20,7 +20,7 @@ const SearchBar = ({ setResults }) => {
     }, [debouncedKeyword, setResults]);
 
     return (
-        <div className='w-[40%] m-auto'>
+        <div className='w-[80%] m-auto'>
             <input value={keyword} onChange={(e) => setKeyword(e.target.value)} className='border border-black my-5 w-full p-3 rounded-full' />
         </div>
     );
